@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    #    url: jdbc:h2:mem:test   #不持久化，放在内存中
+    url: jdbc:h2:~/test
+    username: root
+    password: test
+  h2:
+    console:
+      path: /h2-console
+      enabled: true #必须配置，不然无法访问
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  sql:
+    init:
+      schema-locations: classpath:h2/dll.sql
+      data-locations: classpath:h2/init.sql
